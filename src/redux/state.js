@@ -16,13 +16,16 @@ let state = {
             {id: 5, message: 'Yo'}
         ],
         dialogs: [
-            {id: 1, name: 'Dimych'},
-            {id: 2, name: 'Andrew'},
-            {id: 3, name: 'Sveta'},
-            {id: 4, name: 'Sasha'},
-            {id: 5, name: 'Viktor'},
-            {id: 6, name: 'Valera'}
+            {id: 1, name: 'Dimych', img:"https://cdn.dribbble.com/users/2364329/screenshots/4707722/dribbble-01.jpg"},
+            {id: 2, name: 'Andrew', img:"https://avachara.com/avatar/gallery/chara180131163032_7515.jpg"},
+            {id: 3, name: 'Sveta', img:"https://www.seoclerk.com/pics/319222-1IvI0s1421931178.png"},
+            {id: 4, name: 'Sasha', img:"https://pbs.twimg.com/profile_images/509529944431407104/PJITGbsA_400x400.jpeg"},
+            {id: 5, name: 'Viktor', img:"https://avatoon.net/wp-content/uploads/2018/07/Alex-Custom-Avatar-Design.jpg"},
+            {id: 6, name: 'Valera', img:"https://cdn.dribbble.com/users/3162963/screenshots/6763039/cartoon-1_1_1_2x.jpg"}
         ]
+    },
+    sidebar: {
+
     }
 }
 

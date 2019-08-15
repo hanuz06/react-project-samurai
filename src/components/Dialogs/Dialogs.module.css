@@ -1,6 +1,11 @@
 .dialogs {
     display: grid;
-    grid-template-columns: 2fr 10fr;
+    grid-template-columns: 4fr 6fr;
+}
+
+.dialogs a {
+    color: cyan;
+    text-decoration: none;
 }
 
 .dialogsItems {
@@ -8,7 +13,7 @@
     color: white;
 }
 
-.dialogsItems .active {
+.active {
     color: gold;
 }
 
@@ -18,5 +23,11 @@
 
 .messages .message {
     color: white;
+}
+
+.avatarImg {
+    width: 50px;
+    height: 50px;
+    border-radius: 30px;
 }
 
