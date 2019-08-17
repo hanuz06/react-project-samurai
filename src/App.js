@@ -18,6 +18,6 @@ const App = (props) => {
                         profilePage={props.state.profilePage}
                         dispatch={props.dispatch}/> }/>
                 </div>
-            </div>)}
+            </div>)};
 
 export default App;
