@@ -1,7 +1,17 @@
 const ADD_POST = "ADD_POST";
 const UPDATE_NEW_POST_TEXT = 'UPDATE_NEW_POST_TEXT';
 
-const profileReducer = (state, action) =>{
+let initialState = {
+    posts: [
+        {id: 1, message: 'Hi, how are you!?', likesCount: 12},
+        {id: 2, message: 'It\'s my first post', likesCount: 11},
+        {id: 3, message: 'Blabla', likesCount: 11},
+        {id: 4, message: 'Dada', likesCount: 11}
+    ],
+    newPostText: "it-kamasutra.ca"
+};
+
+const profileReducer = (state=initialState, action) =>{
 
     switch(action.type){
         case ADD_POST:
@@ -21,7 +31,7 @@ const profileReducer = (state, action) =>{
     }
 };
 
-//Action creators used by UI part. Functions are imported directly in UI files from state.js
+//Action creators used by UI part. Functions are imported directly in UI files from store.js
 export const addPostActionCreator = () => ({ type: ADD_POST });
 
 export const updateNewPostActionCreator = text =>

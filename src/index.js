@@ -3,19 +3,25 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import store from './redux/state';
+import store from './redux/redux-store';
 import {BrowserRouter} from "react-router-dom";
 
 let rerenderEntireTree = (state) => {
+    debugger;
     ReactDOM.render(
         <BrowserRouter>
             <App state={state} dispatch={store.dispatch.bind(store)} store={store}/>
         </BrowserRouter>, document.getElementById('root'));
 };
 
+//For initial page rendering
 rerenderEntireTree(store.getState());
 
-store.subscribe(rerenderEntireTree);
+//For subsenquent rendering. Redux won't pass updated state...only notifies, so we need to use anonymous function and pass updated state
+store.subscribe(()=>{
+    let state = store.getState()
+    rerenderEntireTree(state);
+});
 
 
 // If you want your app to work offline and load faster, you can change
