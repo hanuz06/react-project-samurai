@@ -5,11 +5,14 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import store from './redux/redux-store';
 import {BrowserRouter} from "react-router-dom";
+import {Provider} from './StoreContext'
 
 let rerenderEntireTree = (state) => {
     ReactDOM.render(
         <BrowserRouter>
-            <App state={state} dispatch={store.dispatch.bind(store)} store={store}/>
+            <Provider store={store}>
+                <App/>
+            </Provider>
         </BrowserRouter>, document.getElementById('root'));
 };
 
@@ -17,7 +20,7 @@ let rerenderEntireTree = (state) => {
 rerenderEntireTree(store.getState());
 
 //For subsenquent rendering. Redux won't pass updated state...only notifies, so we need to use anonymous function and pass updated state
-store.subscribe(()=>{
+store.subscribe(() => {
     let state = store.getState()
     rerenderEntireTree(state);
 });

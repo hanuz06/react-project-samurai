@@ -15,8 +15,8 @@ const App = (props) => {
                 <Navbar/>
                 <div className='app-wrapper-content'>
                     {/*DialogsContainer is external wrapper of Dialogs.jsx and takes all interfaces directly communicating with Store. Advantage: we can use Dialogs.jsx in other projects as it is 'clean'(directly not tied to Redux)*/}
-                    <Route path='/dialogs' render={ () => <DialogsContainer store={props.store} /> }/>
-                    <Route path='/profile' render={ () => <Profile store={props.store} /> }/>
+                    <Route path='/dialogs' render={ () => <DialogsContainer /> }/>
+                    <Route path='/profile' render={ () => <Profile /> }/>
                 </div>
             </div>)};
 
