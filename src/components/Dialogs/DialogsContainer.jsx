@@ -3,20 +3,21 @@ import {sendMessageCreator, updateNewMessageBodyCreator} from "../../redux/dialo
 import Dialogs from "./Dialogs";
 import {connect} from "react-redux";
 
-
+//mapStateToProps always send data down the tree for rendering
 const mapStateToProps = (state) => {
     return {
         dialogsPage: state.dialogsPage
     }
 };
 
+//mapDispatchToProps always sends data up the tree to change the state/store.
 const mapDispatchToProps = (dispatch) => {
     return {
-        updateNewMessageBody: () => {
-            dispatch(sendMessageCreator());
-        },
-        sendMessage: (body) => {
+        updateNewMessageBody: (body) => {
             dispatch(updateNewMessageBodyCreator(body));
+        },
+        sendMessage: () => {
+            dispatch(sendMessageCreator());
         }
     }
 };
