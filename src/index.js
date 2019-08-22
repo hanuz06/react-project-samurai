@@ -11,7 +11,7 @@ import {Provider} from 'react-redux'
 ReactDOM.render(
     <BrowserRouter>
         <Provider store={store}>
-            {/*It will will be {props.children}*/}
+            {/*It will be {props.children}*/}
             <App/>
         </Provider>
     </BrowserRouter>, document.getElementById('root'));

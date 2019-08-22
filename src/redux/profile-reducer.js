@@ -13,6 +13,9 @@ let initialState = {
 
 const profileReducer = (state = initialState, action) => {
 
+    // let stateCopy = {...state};
+    // stateCopy.posts = [...state.posts];
+
     switch (action.type) {
         case ADD_POST: {
             let newPost = {
@@ -20,16 +23,22 @@ const profileReducer = (state = initialState, action) => {
                 message: state.newPostText,
                 likesCount: 0
             };
-            let stateCopy = {...state};
-            stateCopy.posts = [...state.posts];
-            stateCopy.newPostText.length > 0 ? stateCopy.posts.push(newPost) : alert("Empty post");
-            stateCopy.newPostText = '';
-            return stateCopy;
+
+            return [...state.newPostText].length > 0 ?
+                {
+                    ...state,
+                    posts: [...state.posts, newPost],
+                    newPostText: ''
+                } : (alert("Enter text") || {
+                    ...state,
+                    posts: [...state.posts]
+                })
         }
         case UPDATE_NEW_POST_TEXT: {
-            let stateCopy = {...state};
-            stateCopy.newPostText = action.newText;
-            return stateCopy;
+            return {
+                ...state,
+                newPostText: action.newText
+            };
         }
         default:
             return state;
