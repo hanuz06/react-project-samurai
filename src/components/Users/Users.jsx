@@ -1,53 +1,26 @@
 import React from 'react';
 import styles from './users.module.css';
+import * as axios from 'axios';
+import userPhoto from '../../assets/images/user.png';
 
-let Users = props => {
+let Users = (props) => {
+
 
     if (props.users.length === 0) {
-        props.setUsers(
-            [
-                {
-                    id: 1,
-                    photoURL: 'https://upload.wikimedia.org/wikipedia/commons/1/1c/Dmitry_Nagiev_2017_3.jpg',
-                    followed: false,
-                    fullName: 'Dmitry',
-                    status: 'I am a boss',
-                    location: {city: 'Minsk', country: "Belarus"}
-                },
-                {
-                    id: 2,
-                    photoURL: 'https://bit.ly/2PaWiGA',
-                    followed: true,
-                    fullName: 'Anatoly',
-                    status: 'I am very friendly',
-                    location: {city: 'Seoul', country: "Korea"}
-                },
-                {
-                    id: 3,
-                    photoURL: 'https://bit.ly/2PaWiGA',
-                    followed: false,
-                    fullName: 'Elena',
-                    status: 'I am happy',
-                    location: {city: 'Boston', country: "USA"}
-                },
-                {
-                    id: 4,
-                    photoURL: 'https://bit.ly/2PaWiGA',
-                    followed: true,
-                    fullName: 'John',
-                    status: 'Coys!',
-                    location: {city: 'Toronto', country: "Canada"}
-                },
-                {
-                    id: 5,
-                    photoURL: 'https://bit.ly/2PaWiGA',
-                    followed: false,
-                    fullName: 'Lisa',
-                    status: 'I am a beauty!',
-                    location: {city: 'Berlin', country: "Germany"}
-                }
-            ]
-        )
+
+        //         {
+        //             id: 1,
+        //             photoURL: 'https://upload.wikimedia.org/wikipedia/commons/1/1c/Dmitry_Nagiev_2017_3.jpg',
+        //             followed: false,
+        //             fullName: 'Dmitry',
+        //             status: 'I am a boss',
+        //             location: {city: 'Minsk', country: "Belarus"}
+        //         }
+
+        axios.get("https://social-network.samuraijs.com/api/1.0/users").then(response => {
+            props.setUsers(response.data.items);
+
+        });
     }
 
 
@@ -56,7 +29,7 @@ let Users = props => {
             props.users.map(u => <div key={u.id}>
                 <span>
                     <div>
-                        <img src={u.photoURL} className={styles.userPhoto}/>
+                        <img src={u.photos.small != null ? u.photos.small : userPhoto} className={styles.userPhoto}/>
                     </div>
                     <div>
                         {u.followed
@@ -70,12 +43,12 @@ let Users = props => {
                 </span>
                 <span>
                     <span>
-                        <div>{u.fullName}</div>
+                        <div>{u.name}</div>
                         <div>{u.status}</div>
                     </span>
                     <span>
-                        <div>{u.location.country}</div>
-                        <div>{u.location.city}</div>
+                        <div>{"u.location.country"}</div>
+                        <div>{"u.location.city"}</div>
                     </span>
                 </span>
             </div>)
