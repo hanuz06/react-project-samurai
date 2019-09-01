@@ -5,26 +5,29 @@ import userPhoto from '../../assets/images/user.png';
 
 let Users = (props) => {
 
+    let getUsers = () => {
+        if (props.users.length === 0) {
 
-    if (props.users.length === 0) {
+            //         {
+            //             id: 1,
+            //             photoURL: 'https://upload.wikimedia.org/wikipedia/commons/1/1c/Dmitry_Nagiev_2017_3.jpg',
+            //             followed: false,
+            //             fullName: 'Dmitry',
+            //             status: 'I am a boss',
+            //             location: {city: 'Minsk', country: "Belarus"}
+            //         }
 
-        //         {
-        //             id: 1,
-        //             photoURL: 'https://upload.wikimedia.org/wikipedia/commons/1/1c/Dmitry_Nagiev_2017_3.jpg',
-        //             followed: false,
-        //             fullName: 'Dmitry',
-        //             status: 'I am a boss',
-        //             location: {city: 'Minsk', country: "Belarus"}
-        //         }
+            axios.get("https://social-network.samuraijs.com/api/1.0/users").then(response => {
+                props.setUsers(response.data.items);
 
-        axios.get("https://social-network.samuraijs.com/api/1.0/users").then(response => {
-            props.setUsers(response.data.items);
-
-        });
-    }
+            });
+        }
+    };
 
 
+    //Returns jsx data
     return <div>
+        <button onClick={getUsers}>Get Users</button>
         {
             props.users.map(u => <div key={u.id}>
                 <span>
