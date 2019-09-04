@@ -2,3 +2,18 @@
     width: 100px;
     height: 100px;
 }
+
+.selectedPage {
+    font-weight: bold;
+    font-size: 1.2rem;
+    margin-right: 5px;
+}
+
+.numStyle {
+     margin-right: 5px;
+ }
+
+.numStyle:hover {
+    cursor: pointer;
+    color: yellowgreen;
+}
