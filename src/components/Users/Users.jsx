@@ -2,6 +2,7 @@ import React from 'react';
 import styles from './users.module.css';
 import userPhoto from '../../assets/images/user.png';
 import {NavLink} from "react-router-dom";
+import * as axios from 'axios';
 
 let Users = props => {
 
@@ -34,11 +35,35 @@ let Users = props => {
                     <div>
                         {u.followed
                             ? <button onClick={() => {
-                                props.unfollow(u.id)
+                                //To unfollow we send DELETE request and place withCredentials as a 2nd parameter
+                                axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`,{
+                                    withCredentials: true,
+                                    headers: {
+                                        "API-KEY": "1e15648d-8188-43cb-9eaf-7e8c8429da01"
+                                    }
+                                })
+                                    .then(response => {
+                                        if (response.data.resultCode === 0){
+                                            props.unfollow(u.id);
+                                        }
+                                    });
                             }}>Unfollow</button>
-                            : <button onClick={() => {
-                                props.follow(u.id)
-                            }}>Follow</button>}
+                            :  <button onClick={() => {
+                                //With POST we set to 'follow' and withCredentials is placed as a 3rd parameter
+                                axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`,{},{
+                                    withCredentials: true,
+                                    headers: {
+                                        "API-KEY": "1e15648d-8188-43cb-9eaf-7e8c8429da01"
+                                    }
+                                })
+                                .then(response => {
+                                    if (response.data.resultCode ===0){
+                                        props.follow(u.id);
+                                    }
+                                });
+
+                            }}>Follow</button>
+                        }
                     </div>
                 </span>
                 <span>
